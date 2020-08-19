@@ -1,6 +1,5 @@
 import React from "react";
-import ReactDom, { render } from "react-dom";
+import ReactDom from "react-dom";
+import Movies from "./movies";
 
-const element = <h1>my app </h1>;
-
-ReactDom.render(element, document.getElementById("root"));
+ReactDom.render(<Movies />, document.getElementById("root"));

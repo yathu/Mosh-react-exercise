@@ -84,3 +84,5 @@ talk(); //{name: "yathavan", talk: ƒ}
 
 const talk2 = person.talk.bind(animal);
 talk2(); //{name: "animal", bark: ƒ}
+
+//arrow functions inherited this no need to set
