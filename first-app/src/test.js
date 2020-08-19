@@ -52,7 +52,6 @@ const three = { ...first, address: "Pointpedro", ...secound };
 console.log(three);
 //output {name: "yathavan", address: "Pointpedro", age: 31}
 
-
 // class constructer with super seperate class and export & default export with name export
 
 // import ... from class
@@ -60,3 +59,28 @@ console.log(three);
 
 // import personClass,{function} from "./person.js"
 // import React,{Component} from "react"
+
+//and bind method for  set functions (function also obj) this
+
+const person = {
+  name: "yathavan",
+  talk() {
+    console.log(this);
+  },
+};
+
+const animal = {
+  name: "animal",
+  bark() {
+    console.log("bark");
+  },
+};
+
+person.talk(); //{name: "yathavan", talk: ƒ}
+
+//now talk is function if doubt please console same for talk2
+const talk = person.talk.bind(person);
+talk(); //{name: "yathavan", talk: ƒ}
+
+const talk2 = person.talk.bind(animal);
+talk2(); //{name: "animal", bark: ƒ}
