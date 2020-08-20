@@ -1,12 +1,17 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
-import { getMovies, deleteMovie } from "./services/fakeMovieService";
+import { getMovies } from "./services/fakeMovieService";
 import { Component } from "react";
 
 class Movies extends Component {
   state = {
     movies: getMovies(),
+  };
+
+  handleDelete = (id) => {
+    let filered = this.state.movies.filter((movie) => movie._id !== id);
+    this.setState({ movies: filered });
   };
 
   renderRows() {
@@ -16,13 +21,13 @@ class Movies extends Component {
       <tbody>
         {movies.map((movies) => (
           <tr key={movies._id}>
-            <td scope="row">{movies.title}</td>
+            <td>{movies.title}</td>
             <td>{movies.genre.name}</td>
             <td>{movies.numberInStock}</td>
             <td>{movies.dailyRentalRate}</td>
             <td>
               <button
-                onClick={this.deleteMovie_(movies._id)}
+                onClick={() => this.handleDelete(movies._id)}
                 className="btn btn-danger"
               >
                 <i className="fa fa-trash"></i>
@@ -34,10 +39,9 @@ class Movies extends Component {
     );
   }
 
-  render() {
-    return (
-      <div>
-        <p>Showing {this.state.movies.length} movies in databse</p>
+  renderTable = () => {
+    if (this.state.movies.length > 0) {
+      return (
         <table className="table">
           <thead>
             <tr>
@@ -51,6 +55,15 @@ class Movies extends Component {
 
           {this.renderRows()}
         </table>
+      );
+    }
+  };
+
+  render() {
+    return (
+      <div>
+        <p>Showing {this.state.movies.length} movies in databse</p>
+        <div>{this.renderTable()}</div>
       </div>
     );
   }
