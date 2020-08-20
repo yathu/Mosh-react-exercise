@@ -1,6 +1,7 @@
 import React from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "font-awesome/css/font-awesome.css";
+import "./index.css";
 import { getMovies } from "./services/fakeMovieService";
 import { Component } from "react";
 
@@ -16,8 +17,12 @@ class Movies extends Component {
   };
 
   renderTable = () => {
-    if (this.state.movies.length > 0) {
-      return (
+    const { length: count } = this.state.movies;
+
+    if (count == 0) return <p> the database is empty</p>;
+    return (
+      <React.Fragment>
+        <p>Showing {count} movies in databse</p>
         <table className="table">
           <thead>
             <tr>
@@ -48,14 +53,13 @@ class Movies extends Component {
             ))}
           </tbody>
         </table>
-      );
-    }
+      </React.Fragment>
+    );
   };
 
   render() {
     return (
       <div>
-        <p>Showing {this.state.movies.length} movies in databse</p>
         <div>{this.renderTable()}</div>
       </div>
     );
