@@ -9,35 +9,11 @@ class Movies extends Component {
     movies: getMovies(),
   };
 
-  handleDelete = (id) => {
-    let filered = this.state.movies.filter((movie) => movie._id !== id);
+  handleDelete = (movie) => {
+    console.log(movie);
+    let filered = this.state.movies.filter((m) => m._id !== movie._id);
     this.setState({ movies: filered });
   };
-
-  renderRows() {
-    const { movies } = this.state;
-    console.log(movies.length);
-    return (
-      <tbody>
-        {movies.map((movies) => (
-          <tr key={movies._id}>
-            <td>{movies.title}</td>
-            <td>{movies.genre.name}</td>
-            <td>{movies.numberInStock}</td>
-            <td>{movies.dailyRentalRate}</td>
-            <td>
-              <button
-                onClick={() => this.handleDelete(movies._id)}
-                className="btn btn-danger"
-              >
-                <i className="fa fa-trash"></i>
-              </button>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    );
-  }
 
   renderTable = () => {
     if (this.state.movies.length > 0) {
@@ -53,7 +29,24 @@ class Movies extends Component {
             </tr>
           </thead>
 
-          {this.renderRows()}
+          <tbody>
+            {this.state.movies.map((movies) => (
+              <tr key={movies._id}>
+                <td>{movies.title}</td>
+                <td>{movies.genre.name}</td>
+                <td>{movies.numberInStock}</td>
+                <td>{movies.dailyRentalRate}</td>
+                <td>
+                  <button
+                    onClick={() => this.handleDelete(movies)}
+                    className="btn btn-danger"
+                  >
+                    <i className="fa fa-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
         </table>
       );
     }
