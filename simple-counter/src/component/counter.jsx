@@ -20,6 +20,8 @@ class Counter extends Component {
     return (
       <div className="mb-3">
         {this.props.children}
+        <h5>title - {this.props.id}</h5>
+
         <span className="py-2 px-4 mr-3 badge badge-primary">
           {count === 0 ? "Zero" : count}
         </span>
