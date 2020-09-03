@@ -7,4 +7,4 @@ code with mosh Simple Counter app.
 
 Raising and handling event
 
-- create dete function in counters and access from counter component.
+- create delete function in counters and access from counter component.
