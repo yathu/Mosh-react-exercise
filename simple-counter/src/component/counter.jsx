@@ -4,7 +4,7 @@ import "font-awesome/css/font-awesome.css";
 
 class Counter extends Component {
   state = {
-    count: this.props.value,
+    count: this.props.counter.value,
   };
 
   incrementCount = () => {
@@ -19,7 +19,6 @@ class Counter extends Component {
 
     return (
       <div className="mb-3">
-
         <span className="py-2 px-4 mr-3 badge badge-primary">
           {count === 0 ? "Zero" : count}
         </span>
@@ -28,6 +27,12 @@ class Counter extends Component {
           onClick={this.incrementCount}
         >
           <i className="fa fa-plus"></i> add
+        </button>
+        <button
+          className="btn btn-sm ml-3 btn-danger"
+          onClick={() => this.props.onDelete(this.props.counter.id)}
+        >
+          <i className="fa fa-trash"></i>
         </button>
       </div>
     );
